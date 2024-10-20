@@ -1,0 +1,10 @@
+.Wrapper{
+    padding: 0 20px;
+    margin: 20px 0;
+}
+.reviewItem{
+    margin-top: 15px;
+}
+.authorName{
+    font-weight: 600;
+}

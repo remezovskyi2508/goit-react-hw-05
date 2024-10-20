@@ -2,6 +2,7 @@ import css from './MovieDetailsPage.module.css';
 
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
 import movieApi from '../../api/movieApi';
 
 import { IoArrowBackCircleOutline } from 'react-icons/io5';
