@@ -1,0 +1,25 @@
+.navWrapper {
+  margin-top: 10px;
+}
+.link {
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 20px;
+  display: inline-block;
+  width: 110px;
+}
+.link:first-child {
+  margin-left: 10px;
+}
+.link:last-child {
+  margin-right: 0;
+}
+.link:hover {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.active {
+  text-decoration: underline;
+  font-weight: 600;
+}
