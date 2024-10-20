@@ -1,13 +1,16 @@
-import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
-import { Link, useParams, Outlet } from 'react-router-dom';
 import css from './MoviesPage.module.css';
-import { TfiSearch } from 'react-icons/tfi';
-import { useState, useEffect } from 'react';
+
+import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
 import movieApi from '../../api/movieApi';
 
+import { Link, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { TfiSearch } from 'react-icons/tfi';
+
 export default function MoviesPage() {
-  const { movieId } = useParams();
-  const [savedValue, setSavedValue] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchValue = searchParams.get('query') || '';
   const [movies, setMovies] = useState([]);
 
   const handleSubmit = e => {
@@ -15,7 +18,7 @@ export default function MoviesPage() {
     const form = e.target;
     const searchValue = form.elements.searchMovie.value.trim();
     if (searchValue !== '') {
-      setSavedValue(searchValue);
+      setSearchParams({ query: searchValue });
     }
     console.log('Search values in input:', searchValue);
     form.reset();
@@ -23,7 +26,7 @@ export default function MoviesPage() {
   useEffect(() => {
     async function fetchMovies() {
       const { results } = await movieApi('/search/movie', {
-        query: savedValue,
+        query: searchValue,
         include_adult: 'false',
         language: 'en-US',
         page: '1',
@@ -33,7 +36,7 @@ export default function MoviesPage() {
     }
 
     fetchMovies();
-  }, [savedValue]);
+  }, [searchValue]);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -55,8 +58,6 @@ export default function MoviesPage() {
           ))}
         </ul>
       )}
-      <MovieDetailsPage id={movieId} />
-      <Outlet />
     </>
   );
 }
