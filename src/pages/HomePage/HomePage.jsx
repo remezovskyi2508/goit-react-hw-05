@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import css from './HomePage.module.css';
 import movieApi from '../../api/movieApi';
+import MovieList from '../../components/MovieList/MovieList';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -15,13 +15,5 @@ export default function HomePage() {
 
     fetchMovies();
   }, []);
-  return (
-    <ul className={css.listMovies}>
-      {movies.map(movie => (
-        <li key={movie.id} className={css.linkMovies}>
-          <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </ul>
-  );
+  return <MovieList movies={movies} />;
 }

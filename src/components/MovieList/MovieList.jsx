@@ -1,15 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import css from './MovieList.module.css';
 
-export default function MovieList() {
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
+export default function MovieList({ movies }) {
   return (
-    <>
-      <button onClick={goBack}>Back</button>
-      <h3>No name</h3>
-      <img src="#" alt="no name" />
-    </>
+    <ul className={css.listMovies}>
+      {movies.map(movie => (
+        <li key={movie.id} className={css.linkMovies}>
+          <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+        </li>
+      ))}
+    </ul>
   );
 }
