@@ -1,7 +1,7 @@
 import css from './MovieDetailsPage.module.css';
 
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import movieApi from '../../api/movieApi';
 
@@ -11,8 +11,10 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const navigate = useNavigate();
+  const prevLocation = useRef(null);
+
   const goBack = () => {
-    navigate(-1);
+    navigate(prevLocation.current || -1);
   };
   const {
     poster_path: img1,

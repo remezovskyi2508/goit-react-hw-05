@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import css from './HomePage.module.css';
 import movieApi from '../../api/movieApi';
 import MovieList from '../../components/MovieList/MovieList';
 
@@ -15,5 +14,5 @@ export default function HomePage() {
 
     fetchMovies();
   }, []);
-  return <MovieList movies={movies} />;
+  return <>{movies.length > 0 && <MovieList movies={movies} />}</>;
 }

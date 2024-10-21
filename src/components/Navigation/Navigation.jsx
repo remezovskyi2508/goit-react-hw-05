@@ -9,7 +9,7 @@ export default function Navigation() {
     return clsx(css.link, isActive && css.active);
   };
   return (
-    <header>
+    <header className={css.menuWrapper}>
       <nav className={css.navWrapper}>
         <NavLink to="/" className={buildLinkClass}>
           HomePage

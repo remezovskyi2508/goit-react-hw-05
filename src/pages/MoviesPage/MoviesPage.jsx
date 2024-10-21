@@ -1,9 +1,9 @@
 import css from './MoviesPage.module.css';
 
-import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
+import MovieList from '../../components/MovieList/MovieList';
 import movieApi from '../../api/movieApi';
 
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { TfiSearch } from 'react-icons/tfi';
@@ -50,15 +50,8 @@ export default function MoviesPage() {
           <TfiSearch />
         </button>
       </form>
-      {movies.length > 0 && (
-        <ul className={css.listMovies}>
-          {movies.map(movie => (
-            <li key={movie.id} className={css.linkMovies}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+
+      {movies.length > 0 && <MovieList movies={movies} />}
     </>
   );
 }
