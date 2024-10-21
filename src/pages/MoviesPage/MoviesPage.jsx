@@ -39,8 +39,9 @@ export default function MoviesPage() {
   }, [searchValue]);
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={css.formStyle}>
         <input
+          className={css.inputStyle}
           type="text"
           placeholder="Знайди фільм по назві"
           name="searchMovie"

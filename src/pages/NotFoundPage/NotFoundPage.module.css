@@ -1,0 +1,36 @@
+.title {
+  font-size: 96px;
+  color: #ff4757; /* Яркий красный цвет */
+  margin: 0;
+  text-align: center;
+}
+
+.message {
+  font-size: 24px;
+  color: #333;
+  margin: 20px 0;
+  text-align: center;
+}
+.btn {
+  /* padding: 0;
+    margin: 0; */
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btnIcon {
+  height: 25px;
+  width: 25px;
+  transition: transform 0.2s ease;
+}
+.btn:hover {
+  transform: scale(0.97);
+}
+
+.btnIcon:hover {
+  transform: scale(0.97);
+}

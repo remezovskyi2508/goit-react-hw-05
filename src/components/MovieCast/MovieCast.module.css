@@ -1,14 +1,21 @@
-.wrapper{
-    margin: 20px 0;
-    padding: 0 20px;
+.wrapper {
+  margin: 20px 0;
+  padding: 0 20px;
 }
-.actorsList{
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 20px;
-    justify-content: center;
+.actorsList {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  justify-content: center;
+  list-style-type: none;
 }
-.imgItem{
-    width: 200px;
-    height: 300px;
+.imgItem {
+  width: 200px;
+  height: 300px;
+}
+.authorName {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

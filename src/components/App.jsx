@@ -13,20 +13,25 @@ const MovieCast = lazy(() => import('../components/MovieCast/MovieCast'));
 const MovieReviews = lazy(() =>
   import('../components/MovieReviews/MovieReviews')
 );
+const NotFoundPage = lazy(() =>
+  import('../pages/NotFoundPage/NotFoundPage')
+);
 
 function App() {
   const buildLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
   return (
-    <div className={css.navWrapper}>
-      <NavLink to="/" className={buildLinkClass}>
-        HomePage
-      </NavLink>
-      <NavLink to="/movies" className={buildLinkClass}>
-        MoviesPage
-      </NavLink>
-      <div>
+    <>
+      <div className={css.menuWrapper}>
+        <NavLink to="/" className={buildLinkClass}>
+          HomePage
+        </NavLink>
+        <NavLink to="/movies" className={buildLinkClass}>
+          MoviesPage
+        </NavLink>
+      </div>
+      <div className={css.moviesList}>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -35,10 +40,11 @@ function App() {
               <Route path="cast" element={<MovieCast />} />
               <Route path="reviews" element={<MovieReviews />} />
             </Route>
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
 

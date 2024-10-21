@@ -1,8 +1,40 @@
-.btn{
-    /* padding: 0;
+.btn {
+  /* padding: 0;
     margin: 0; */
-    background-color: transparent;
-    border: none;
-    height: 25px;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  cursor: pointer;
+  position: absolute;
+  left: 25px;
+  top: 12px;
+}
+.listMovies {
+  padding: 0 20px;
+  margin-top: 20px;
+}
+.formStyle {
+  padding: 0 20px;
+  position: relative;
+}
+.inputStyle {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px 12px 40px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.inputStyle:focus {
+  border-color: #05898e;
+  box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.3); 
+}
+
+.inputStyle::placeholder {
+  color: #999; 
+  font-style: italic;
 }

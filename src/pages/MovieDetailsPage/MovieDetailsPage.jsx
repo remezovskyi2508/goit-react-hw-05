@@ -37,15 +37,15 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   return (
-    <>
+    <div className={css.detailPageWrap}>
       <button onClick={goBack} className={css.btn}>
         <IoArrowBackCircleOutline className={css.btnIcon} />
       </button>
       {movie ? (
         <div>
-          <div className={css.mainWrappe}>
+          <div className={css.mainWrapper}>
             <img
-              className={css.imgNotFound}
+              className={css.imgStyle}
               src={
                 `https://image.tmdb.org/t/p/w200${img1}` ||
                 `https://image.tmdb.org/t/p/w200${img2}`
@@ -61,18 +61,18 @@ export default function MovieDetailsPage() {
               <p>{genresName.join(', ')}</p>
             </div>
           </div>
-          <p>Additional information</p>
+          <p className={css.addInfo}>Additional information</p>
           <ul>
-            <li>
+            <li className={css.linkAddInfo}>
               <Link to="cast">Cast</Link>
             </li>
-            <li>
+            <li className={css.linkAddInfo}>
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
           <Outlet />
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
