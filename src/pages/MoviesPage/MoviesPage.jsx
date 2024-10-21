@@ -12,6 +12,8 @@ export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('query') || '';
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,18 +27,26 @@ export default function MoviesPage() {
   };
   useEffect(() => {
     async function fetchMovies() {
-      const { results } = await movieApi('/search/movie', {
-        query: searchValue,
-        include_adult: 'false',
-        language: 'en-US',
-        page: '1',
-      });
-      setMovies(results);
-      console.log(results); // check the data is fetching
+      try {
+        const { results } = await movieApi('/search/movie', {
+          query: searchValue,
+          include_adult: 'false',
+          language: 'en-US',
+          page: '1',
+        });
+        setMovies(results);
+        console.log(results); // check the data is fetching
+      } catch (error) {
+        setError('Не вдалося завантажити фільми');
+      } finally {
+        setLoading(false);
+      }
     }
-
     fetchMovies();
   }, [searchValue]);
+  if (loading) return <p>Завантаження...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <>
       <form onSubmit={handleSubmit} className={css.formStyle}>

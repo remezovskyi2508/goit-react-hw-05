@@ -27,16 +27,25 @@ export default function MovieDetailsPage() {
   const percentageScore = score * 10;
   const { genres = [] } = movie || {};
   const genresName = genres.map(genre => genre.name);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchMovies() {
-      const data = await movieApi(`/movie/${movieId}`);
-      setMovie(data);
-      console.log(data); // check the data is fetching
+      try {
+        const data = await movieApi(`/movie/${movieId}`);
+        setMovie(data);
+        console.log(data); // check the data is fetching
+      } catch (error) {
+        setError('Не вдалося завантажити опис фільму');
+      } finally {
+        setLoading(false);
+      }
     }
-
     fetchMovies();
   }, [movieId]);
+  if (loading) return <p>Завантаження...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className={css.detailPageWrap}>
