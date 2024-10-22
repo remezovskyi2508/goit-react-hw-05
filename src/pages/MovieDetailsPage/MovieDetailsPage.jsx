@@ -1,6 +1,12 @@
 import css from './MovieDetailsPage.module.css';
 
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
 import movieApi from '../../api/movieApi';
@@ -11,10 +17,13 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const navigate = useNavigate();
-  const prevLocation = useRef(null);
+  const location = useLocation();
+  console.log('Movie details:', location);
+  const prevLocation = location.state?.from || '/movies';
+  const locRef = useRef(prevLocation);
 
   const goBack = () => {
-    navigate(prevLocation.current || -1);
+    navigate(locRef.current);
   };
   const {
     poster_path: img1,
@@ -75,10 +84,14 @@ export default function MovieDetailsPage() {
           <p className={css.addInfo}>Additional information</p>
           <ul>
             <li className={css.linkAddInfo}>
-              <Link to="cast">Cast</Link>
+              <Link to="cast" state={{ from: locRef.current }}>
+                Cast
+              </Link>
             </li>
             <li className={css.linkAddInfo}>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" state={{ from: locRef.current }}>
+                Reviews
+              </Link>
             </li>
           </ul>
           <Outlet />
